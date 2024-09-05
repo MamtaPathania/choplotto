@@ -29,11 +29,11 @@ const GetCount = () => {
   const [revenue, setRevenue] = useState("");
   const [total,setTotal]=useState("")
   const [rows,setRows]=useState(5)
-  console.log(revenue,"revenue====")
-console.log(total,"==total length")
+//   console.log(revenue,"revenue====")
+// console.log(total,"==total length")
   const navigate=useNavigate()
   const username = Cookies.get('username')
-  console.log("cookie num", username)
+  // console.log("cookie num", username)
 
   const checkuser = () => {
     if (!username || username == null || username == undefined) {
@@ -49,7 +49,7 @@ console.log(total,"==total length")
   }, []);
 
   useEffect(() => {
-    console.log("Rows state updated:", rows);
+    // console.log("Rows state updated:", rows);
 }, [rows]);
 
 
@@ -61,7 +61,7 @@ console.log(total,"==total length")
           Authorization:`Bearer ${token}`
         }
       });
-      console.log(response,"====revenue response")
+      // console.log(response,"====revenue response")
       setRevenue(response.data);
       setTotal(response.data.length)
       const transformedNodes = transformData(response.data);
@@ -151,7 +151,7 @@ console.log(total,"==total length")
               value={rows}
               options={[5, 10, 15, 20]}
               onChange={(e) => {
-                console.log("Dropdown value selected:", e.value);
+                // console.log("Dropdown value selected:", e.value);
                 setRows(e.value);
               }}
               className="w-30 border-2 border-gray-200 rounded-lg"

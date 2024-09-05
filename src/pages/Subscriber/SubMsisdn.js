@@ -53,7 +53,7 @@ const SubMsisdn = () => {
         amount: user.amount,
         status: user.status,
         subDateTime: user.subDateTime,
-        datetime: user.datetime,
+        // datetime: user.datetime || null,
         lastBilledDateTime: user.lastBilledDateTime,
         nextBilledDateTime: user.nextBilledDateTime,
       },
@@ -165,7 +165,7 @@ const SubMsisdn = () => {
           </div>
 
           <div className='lg:mb-6 mb-4 mt-4'>
-            <span className='border-2 border-gray-200 rounded-lg lg:px-2 lg:py-4 px-3 py-2 '><strong>Total Count:  </strong>{length}</span>
+            <span className='border-2 border-gray-200 rounded-lg lg:px-2 lg:py-4 px-3 py-2 text-black '><strong>Total Count:  </strong>{length}</span>
           </div>
 
           <TreeTable
@@ -177,7 +177,7 @@ const SubMsisdn = () => {
             rowsPerPageOptions={[5, 10, 15, 20]}
           >
             <Column field="sno" header="SNo" style={{ width:"80px"}} />
-            <Column field="msisdn" header="MSISDN" style={{ width: "140px" }}/>
+            <Column field="msisdn" header="MSISDN" style={{ width: "180px" }}/>
             <Column field="service_id" header="SERVICE ID" style={{ width: "140px" }} />
             <Column field="service_name" header="SERVICE NAME" style={{ width: "180px" }} />
             <Column field="operator" header="OPERATOR" style={{ width: "180px" }}/>
@@ -186,7 +186,7 @@ const SubMsisdn = () => {
 
             <Column field="status" header="STATUS" style={{ width: "180px" }}/>
             <Column field="subDateTime" header="SUB DATE TIME" style={{ width: "200px" }}/>
-            <Column field="datetime" header="DATETIME" style={{ width: "200px" }}/>
+            {/* <Column field="datetime" header="DATETIME" style={{ width: "200px" }}/> */}
             <Column field="lastBilledDateTime" header="LAST BILLED DATETIME" style={{ width: "230px" }}/>
             <Column field="nextBilledDateTime" header="NEXT BILLED DATETIME" style={{ width: "230px" }}/>
           </TreeTable>

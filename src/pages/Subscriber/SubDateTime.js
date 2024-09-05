@@ -28,7 +28,7 @@ function SubDateTime() {
 
     const navigate=useNavigate()
     const username = Cookies.get('username')
-    console.log("cookie num", username)
+    // console.log("cookie num", username)
   
     const checkuser = () => {
       if (!username || username == null || username == undefined) {
@@ -44,7 +44,7 @@ function SubDateTime() {
     }, []);
 
     useEffect(() => {
-        console.log("Rows state updated:", rows);
+        // console.log("Rows state updated:", rows);
     }, [rows]);
 
     const handleSubmit = async (e) => {
@@ -58,6 +58,8 @@ function SubDateTime() {
     };
 
     const fetchData = async (date) => {
+        setNodes([])
+        setLength('')
         try {
             const token=Cookies.get('token')
             const response = await axios.post(subdatetime, { subDateTime: date },{
@@ -65,10 +67,10 @@ function SubDateTime() {
                     Authorization:`Bearer ${token}`
                   }
             });
-            console.log(response.data, "response");
+            // console.log(response.data, "response");
             setData(response.data)
             setLength(response.data.length)
-            console.log(response.data.length)
+            // console.log(response.data.length)
             const transformedNodes = transformData(response.data);
             setNodes(transformedNodes);
         } catch (error) {
@@ -99,8 +101,8 @@ function SubDateTime() {
         const tableData = nodes.map(node => node.data); // Extract the data from the nodes
         const ws = XLSX.utils.json_to_sheet(tableData); // Convert the visible data to a sheet
         const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, 'subscription Detail');
-        XLSX.writeFile(wb, 'subscription_detail.xlsx');
+        XLSX.utils.book_append_sheet(wb, ws, 'subscription subDate Detail');
+        XLSX.writeFile(wb, 'subscription_subdate.xlsx');
       };
       
     return (
@@ -147,7 +149,7 @@ function SubDateTime() {
               value={rows}
               options={[5, 10, 15, 20]}
               onChange={(e) => {
-                console.log("Dropdown value selected:", e.value);
+                // console.log("Dropdown value selected:", e.value);
                 setRows(e.value);
               }}
               className="w-30 border-2 border-gray-200 rounded-lg"
@@ -162,13 +164,13 @@ function SubDateTime() {
         </div>
 
         <div className='lg:mb-4 mb-4 mt-4'>
-            <span className='border-2 border-gray-200 rounded-lg lg:px-2 lg:py-4 px-3 py-2 '><strong>Total Count:  </strong>{length}</span>
+            <span className='border-2 border-gray-200 rounded-lg lg:px-2 lg:py-4 px-3 py-2 text-black'><strong>Total Count:  </strong>{length}</span>
           </div>
         
                     <TreeTable
                         key={rows} 
                         value={nodes}
-                        className="w-[360px] sm:w-[660px] md:w-[790px] lg:w-[900px]"
+                        className="w-[360px] sm:w-[660px] md:w-[790px] lg:w-[900px] lg:mt-4 mt-3"
                         paginator
                         rows={rows}
                         rowsPerPageOptions={[5, 10, 15, 20]}

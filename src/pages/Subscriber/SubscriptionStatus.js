@@ -224,7 +224,7 @@ function SubscriptionStatus() {
   }, []);
 
   useEffect(() => {
-    console.log("Rows state updated:", rows);
+    // console.log("Rows state updated:", rows);
   }, [rows]);
 
   const handleSubmit = async (statusValue) => {
@@ -233,16 +233,16 @@ function SubscriptionStatus() {
       const data = {
         status: statusValue.name,
       };
-      console.log("url", `${status}`);
+      // console.log("url", `${status}`);
       const response = await axios.post(status, data, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       setSubStatus(response.data);
-      console.log(response.data);
+      // console.log(response.data);
       setLength(response.data.length);
-      console.log(response.data.length, "----length");
+      // console.log(response.data.length, "----length");
 
       const transformedNodes = transformData(response.data);
       setNodes(transformedNodes);
@@ -330,7 +330,7 @@ function SubscriptionStatus() {
               value={rows}
               options={[5, 10, 15, 20]}
               onChange={(e) => {
-                console.log("Dropdown value selected:", e.value);
+                // console.log("Dropdown value selected:", e.value);
                 setRows(e.value);
               }}
               className="w-30 border-2 border-gray-200 rounded-lg"
@@ -345,7 +345,7 @@ function SubscriptionStatus() {
         </div>
         {isSubmitted && (
           <div className='lg:mb-4 mb-2 mt-4'>
-            <span className='border-2 border-gray-200 rounded-lg lg:px-2 lg:py-4 '><strong>Total {value.name} Count:  </strong>{length}</span>
+            <span className='border-2 border-gray-200 rounded-lg lg:px-2 lg:py-4 text-black'><strong>Total {value.name} Count:  </strong>{length}</span>
           </div>
         )}
         <TreeTable

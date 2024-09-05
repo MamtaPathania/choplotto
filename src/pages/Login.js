@@ -39,7 +39,7 @@ function Login() {
         username: input.username,
         password: input.password,
       });
-console.log(response,"login api res===========")
+// console.log(response,"login api res===========")
       if (response.status == 200) {
         notifySuccess('Login successfull!');
         Cookies.set('username',input.username,{ expires: 1/48 })

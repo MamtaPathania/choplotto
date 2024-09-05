@@ -28,7 +28,7 @@ const ContestByTicket = () => {
 
   const navigate=useNavigate()
   const username = Cookies.get('username')
-  console.log("cookie num", username)
+  // console.log("cookie num", username)
 
   const checkuser = () => {
     if (!username || username == null || username == undefined) {
@@ -41,7 +41,7 @@ const ContestByTicket = () => {
   }, []);
 
   const transformData = (data) => {
-    console.log("Original Data:", data);
+    // console.log("Original Data:", data);
     const transformed = data.map((user,index) => ({
       key: index + 1,     
        data: {
@@ -58,7 +58,7 @@ const ContestByTicket = () => {
         quiz_date_time: user.quiz_date_time,
       },
     }));
-    console.log("Transformed Data:", transformed);
+    // console.log("Transformed Data:", transformed);
     return transformed;
   };
   
@@ -71,10 +71,10 @@ const ContestByTicket = () => {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log(response,"---res")
+      // console.log(response,"---res")
       const transformedNodes = transformData(response.data);
       setNodes(transformedNodes);
-      console.log(response.data.length,"===length===")
+      // console.log(response.data.length,"===length===")
       setLength(response.data.length)
       setShowTable(true);
     } catch (error) {
@@ -92,7 +92,7 @@ const ContestByTicket = () => {
 
   const handleDownload = () => {
     const tableData = nodes.map(node => node.data); 
-    console.log(tableData,"=======")
+    // console.log(tableData,"=======")
     const ws = XLSX.utils.json_to_sheet(tableData); 
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'ticketid Detail');
@@ -164,7 +164,7 @@ const ContestByTicket = () => {
           </div>
 
           <div className='lg:mb-6 mb-4 mt-4'>
-            <span className='border-2 border-gray-200 rounded-lg lg:px-2 lg:py-4 px-3 py-2 '><strong>Total Count:  </strong>{length}</span>
+            <span className='border-2 border-gray-200 rounded-lg lg:px-2 lg:py-4 px-3 py-2 text-black '><strong>Total Count:  </strong>{length}</span>
           </div>
 
           <TreeTable

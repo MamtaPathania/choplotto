@@ -30,11 +30,11 @@ const Unsubscription = () => {
   const [unsub, setUnsub] = useState("");
   const [rows,setRows]=useState(5)
   const [length,setLength]=useState('')
-  console.log(unsub,"unsubscrption====")
+  // console.log(unsub,"unsubscrption====")
 
   const navigate=useNavigate()
   const username = Cookies.get('username')
-  console.log("cookie num", username)
+  // console.log("cookie num", username)
 
   const checkuser = () => {
     if (!username || username == null || username == undefined) {
@@ -50,11 +50,13 @@ const Unsubscription = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Rows state updated:", rows);
+    // console.log("Rows state updated:", rows);
 }, [rows]);
 
 
   const fetchData = async (date) => {
+    setNodes([]);
+    setLength(" ")
     try {
       const token =Cookies.get('token')
       const response = await axios.post(unsubapi, { date },{
@@ -62,9 +64,9 @@ const Unsubscription = () => {
           Authorization:`Bearer ${token}`
         }
       });
-      console.log(response,"====unsub response")
+      // console.log(response,"====unsub response")
       setUnsub(response.data);
-      console.log(response.data.length,"===length")
+      // console.log(response.data.length,"===length")
       setLength(response.data.length)
       const transformedNodes = transformData(response.data);
       setNodes(transformedNodes);
@@ -153,7 +155,7 @@ const Unsubscription = () => {
               value={rows}
               options={[5, 10, 15, 20]}
               onChange={(e) => {
-                console.log("Dropdown value selected:", e.value);
+                // console.log("Dropdown value selected:", e.value);
                 setRows(e.value);
               }}
               className="w-30 border-2 border-gray-200 rounded-lg"
@@ -168,7 +170,7 @@ const Unsubscription = () => {
         </div>
 
         <div className='lg:mb-4 mb-4 mt-4'>
-            <span className='border-2 border-gray-200 rounded-lg lg:px-2 lg:py-4 px-3 py-2 '><strong>Total Count:  </strong>{length}</span>
+            <span className='border-2 border-gray-200 rounded-lg lg:px-2 lg:py-4 px-3 py-2 text-black '><strong>Total Count:  </strong>{length}</span>
           </div>
           
         <TreeTable
